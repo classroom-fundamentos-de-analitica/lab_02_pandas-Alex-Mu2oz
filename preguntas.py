@@ -172,7 +172,6 @@ def pregunta_10():
     for ind, fil in tabla.iterrows():
         fil['_c2'] = ":".join([str(num) for num in fil['_c2']])
     return tabla
-print(pregunta_10())
 
 def pregunta_11():
     """
