@@ -167,8 +167,12 @@ def pregunta_10():
     3   D                  1:2:3:5:5:7
     4   E  1:1:2:3:3:4:5:5:5:6:7:8:8:9
     """
-    return tbl0.groupby("_c1")["_c2"].apply(lambda x: ":".join(x.sort_values().astype(str))).reset_index()
-
+    tabla = tbl0.copy()
+    tabla = tabla.groupby('_c1').agg({'_c2': lambda var: sorted(list(var))})
+    for ind, fil in tabla.iterrows():
+        fil['_c2'] = ":".join([str(num) for num in fil['_c2']])
+    return tabla
+print(pregunta_10())
 
 def pregunta_11():
     """
